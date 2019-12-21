@@ -1,0 +1,56 @@
+h1 {
+  margin-bottom: 40px;
+}
+
+.image-container,
+.input-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.image-container {
+  min-height: 40vh;
+  margin: 40px 0 60px 0;
+}
+
+img {
+  max-width: 40vw;
+  max-height: 40vh;
+}
+
+.result-container {
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+}
+
+.result-container > h2,
+p {
+  margin: 0;
+}
+
+.result-text {
+  padding-top: 2px;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.submit-button-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background: rgb(9, 9, 104);
+  color: rgb(236, 236, 236);
+  font-size: 20px;
+  outline: none;
+  max-width: 200px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}

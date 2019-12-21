@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Face Recognition App</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <h1>Compare two people</h1>
+    <div class="input-container">
+      <span>
+        <label for="img1-input">Image one:</label>
+        <input
+          type="file"
+          name="img1-input"
+          id="img1-input"
+          accept="image/x-png,image/gif,image/jpeg"
+        />
+      </span>
+      <span>
+        <label for="img2-input">Image two:</label>
+        <input
+          type="file"
+          name="img2-input"
+          id="img2-input"
+          accept="image/x-png,image/gif,image/jpeg"
+        />
+      </span>
+    </div>
+    <div class="image-container"></div>
+    <div class="submit-button-container">
+      <button class="btn" id="submit-button">Compare</button>
+      <div class="result-container">
+        <h2>Result:</h2>
+        <p class="result-text"></p>
+      </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
