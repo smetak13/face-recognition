@@ -3,18 +3,23 @@ class ImageUploader {
     this.init();
     this.image1;
     this.image2;
+    this.input1;
+    this.input2;
+    this.submitButton;
   }
 
   init = () => {
-    console.log('initiated javascript from class!');
+    this.input1 = document.querySelector('#img1-input');
+    this.input2 = document.getElementById('img2-input');
+    this.submitButton = document.getElementById('submit-button');
 
-    const input1 = document.querySelector('#img1-input');
-    const input2 = document.getElementById('img2-input');
-    const submitButton = document.getElementById('submit-button');
-
-    input1.addEventListener('change', e => this.handleFileInput(e, 'image1'));
-    input2.addEventListener('change', e => this.handleFileInput(e, 'image2'));
-    submitButton.addEventListener('click', this.postFiles);
+    this.input1.addEventListener('change', e =>
+      this.handleFileInput(e, 'image1')
+    );
+    this.input2.addEventListener('change', e =>
+      this.handleFileInput(e, 'image2')
+    );
+    this.submitButton.addEventListener('click', this.postFiles);
   };
 
   handleFileInput = (e, name) => {
@@ -51,6 +56,11 @@ class ImageUploader {
       files: [this.image1, this.image2]
     };
 
+    const textEl = document.querySelector('.result-text');
+    const resultContainer = document.querySelector('.result-container');
+    resultContainer.style.visibility = 'visible';
+    textEl.innerText = 'Loading...';
+
     try {
       const response = await fetch('http://localhost:5858/api/image-upload', {
         method: 'POST',
@@ -65,15 +75,18 @@ class ImageUploader {
       }
 
       const data = await response.text();
-      console.log(data);
-      const textEl = document.querySelector('.result-text');
-      const resultContainer = document.querySelector('.result-container');
-      resultContainer.style.visibility = 'visible';
 
       textEl.innerText = data;
+      this.reset();
     } catch (err) {
       console.error(err.message);
     }
+  };
+
+  reset = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
 }
 

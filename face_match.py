@@ -15,6 +15,6 @@ def compare_images(img1, img2):
     results = fr.compare_faces([first_image_enc], second_image_enc)
 
     if results[0]:
-        return 'These are the same people'
+        return 'This is the same person'
     else:
         return 'These are different people'

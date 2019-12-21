@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, redirect
 from face_match import compare_images
 
 app = Flask(__name__)
@@ -15,7 +15,6 @@ def post_image():
     image1 = req['files'][0]
     image2 = req['files'][1]
     msg = compare_images(image1, image2)
-    print(msg)
     return msg, 200
 
 
