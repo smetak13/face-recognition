@@ -1,5 +1,6 @@
 from flask import Flask, render_template, json, request, redirect
 from face_match import compare_images
+import os
 
 app = Flask(__name__)
 
@@ -19,4 +20,4 @@ def post_image():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=5858)
+    app.run(debug=True)

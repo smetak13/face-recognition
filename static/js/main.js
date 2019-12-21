@@ -62,7 +62,8 @@ class ImageUploader {
     textEl.innerText = 'Loading...';
 
     try {
-      const response = await fetch('http://localhost:5858/api/image-upload', {
+      const url = '/api/image-upload';
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
