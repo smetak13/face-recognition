@@ -82,7 +82,8 @@ class ImageUploader {
         window.location.reload();
       }, 3000);
     } catch (err) {
-      console.error(err.message);
+      const textEl = document.querySelector('.result-text');
+      textEl.innerText = err.message;
     }
   }
 }
