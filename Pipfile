@@ -12,6 +12,7 @@ face-recognition = "*"
 flask = "*"
 imageio = "*"
 gunicorn = "*"
+werkzeug = "*"
 
 [requires]
 python_version = "3.7"
