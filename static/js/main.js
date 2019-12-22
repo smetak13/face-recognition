@@ -1,34 +1,28 @@
+let input1;
+let input2;
+let submitButton;
+let image1;
+let image2;
+
 class ImageUploader {
-  constructor() {
-    this.init();
-    this.image1;
-    this.image2;
-    this.input1;
-    this.input2;
-    this.submitButton;
+  init() {
+    input1 = document.querySelector('#img1-input');
+    input2 = document.getElementById('img2-input');
+    submitButton = document.getElementById('submit-button');
+
+    input1.addEventListener('change', e => this.handleFileInput(e, 'image1'));
+    input2.addEventListener('change', e => this.handleFileInput(e, 'image2'));
+    submitButton.addEventListener('click', this.postFiles);
+    submitButton.addEventListener('touchstart', this.postFiles);
   }
 
-  init = () => {
-    this.input1 = document.querySelector('#img1-input');
-    this.input2 = document.getElementById('img2-input');
-    this.submitButton = document.getElementById('submit-button');
-
-    this.input1.addEventListener('change', e =>
-      this.handleFileInput(e, 'image1')
-    );
-    this.input2.addEventListener('change', e =>
-      this.handleFileInput(e, 'image2')
-    );
-    this.submitButton.addEventListener('click', this.postFiles);
-  };
-
-  handleFileInput = (e, name) => {
+  handleFileInput(e, name) {
     const fileList = e.target.files;
     const file = fileList[0];
     this.displayFileAsImg(file, name);
-  };
+  }
 
-  displayFileAsImg = (file, name) => {
+  displayFileAsImg(file, name) {
     const fileReader = new FileReader();
     const imgContainer = document.querySelector('.image-container');
     fileReader.onload = () => {
@@ -44,16 +38,21 @@ class ImageUploader {
       img.id = id;
       const result = fileReader.result;
       img.src = result;
-      this[name] = result.split(',')[1];
+      if (name === 'image1') {
+        image1 = result.split(',')[1];
+      } else {
+        image2 = result.split(',')[1];
+      }
+
       imgContainer.appendChild(img);
     };
     fileReader.readAsDataURL(file);
-  };
+  }
 
-  postFiles = async () => {
-    if (!this.image1 || !this.image2) return;
+  async postFiles() {
+    if (!image1 || !image2) return;
     const request = {
-      files: [this.image1, this.image2]
+      files: [image1, image2]
     };
 
     const textEl = document.querySelector('.result-text');
@@ -78,18 +77,15 @@ class ImageUploader {
       const data = await response.text();
 
       textEl.innerText = data;
-      this.reset();
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     } catch (err) {
       console.error(err.message);
     }
-  };
-
-  reset = () => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
-  };
+  }
 }
 
 const imageUploader = new ImageUploader();
-document.addEventListener('DOMContentLoaded', imageUploader);
+document.addEventListener('DOMContentLoaded', imageUploader.init());
