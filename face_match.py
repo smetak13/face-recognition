@@ -2,7 +2,6 @@ import face_recognition as fr
 import base64
 import io
 from imageio import imread
-import numpy
 
 
 def compare_images(img1, img2):

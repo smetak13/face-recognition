@@ -1,6 +1,5 @@
-from flask import Flask, render_template, json, request, redirect
+from flask import Flask, render_template, json, request
 from face_match import compare_images
-import os
 
 app = Flask(__name__)
 
