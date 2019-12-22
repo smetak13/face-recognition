@@ -1,6 +1,7 @@
 from flask import Flask, render_template, json, request
 from face_match import compare_images
-import werkzeug
+
+
 app = Flask(__name__)
 
 
